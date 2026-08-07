@@ -50,10 +50,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="app" element={<Layout />}>
+        <Route path="/app" element={<Layout />}>
           <Route path="" element={<Dashboard />} />
           <Route path="builder/:resumeId" element={<ResumeBuilder />} />
-          <Route path="ccc" element={<ResumeTailor />} />
+          <Route path="tailor-resume" element={<ResumeTailor />} />
         </Route>
 
         <Route path="view/:resumeId" element={<Preview />} />
