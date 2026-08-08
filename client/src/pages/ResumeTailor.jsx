@@ -5,7 +5,7 @@ import {
   Sparkles,
   Target,
   Upload,
-} from "lucide-react"; 
+} from "lucide-react";
 import React, { useRef, useState } from "react";
 import pdfToText from "react-pdftotext";
 import api from "../configs/api";
@@ -20,7 +20,12 @@ const ResumeTailor = () => {
   const [fileName, setFileName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [error, setError] = useState("");
-  const [jobDescription, setJobDescription] = useState("");
+  const [jobData, setJobData] = useState({
+    title: "",
+    company: "",
+    description: "",
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleContainerClick = () => {
@@ -79,7 +84,7 @@ const ResumeTailor = () => {
       return;
     }
 
-    if (!jobDescription.trim()) {
+    if (!jobData.description.trim()) {
       toast.error("Please paste a target job description.");
       return;
     }
@@ -91,7 +96,10 @@ const ResumeTailor = () => {
 
       const { data } = await api.post(
         "/api/ai/extract-update-resume",
-        { resumeText, jobDescription },
+        {
+          resumeText,
+          jobDescription: jobData,
+        },
         { headers: { Authorization: token } },
       );
 
@@ -103,7 +111,11 @@ const ResumeTailor = () => {
     }
   };
 
-  const canSubmit = selectedFile && jobDescription.trim().length > 0;
+  const canSubmit =
+    selectedFile &&
+    jobData.title.trim().length > 0 &&
+    jobData.company.trim().length > 0 &&
+    jobData.description.trim().length > 0;
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[#FAFCFB] text-slate-800 pb-16">
@@ -151,7 +163,7 @@ const ResumeTailor = () => {
                 PDF or Word
               </span>
             </div>
-         
+
             <div
               className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer mb-2 group transition-all ${
                 fileName
@@ -174,7 +186,9 @@ const ResumeTailor = () => {
                 <Upload className="w-5 h-5" />
               </div>
               <p className="text-sm font-bold text-slate-800">
-                {fileName ? "Replace resume file" : "Click to upload your resume"}
+                {fileName
+                  ? "Replace resume file"
+                  : "Click to upload your resume"}
               </p>
               <p className="text-xs text-slate-500 mt-1">
                 Supports PDF or Word documents (.pdf, .doc, .docx)
@@ -192,7 +206,7 @@ const ResumeTailor = () => {
           </div>
 
           {/* Job description card */}
-          <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-2">
             <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <Target className="w-5 h-5 text-[#00D26A]" />
@@ -205,6 +219,37 @@ const ResumeTailor = () => {
               </span>
             </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Target Job Title
+                </label>
+                <input
+                  type="text"
+                  value={jobData.title}
+                  onChange={(e) =>
+                    setJobData((prev) => ({ ...prev, title: e.target.value }))
+                  }
+                  placeholder="e.g. Senior Fullstack Engineer"
+                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00D26A]"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Target Company Name
+                </label>
+                <input
+                  type="text"
+                  value={jobData.company}
+                  onChange={(e) =>
+                    setJobData((prev) => ({ ...prev, company: e.target.value }))
+                  }
+                  placeholder="e.g. Google, Stripe, Vanguard"
+                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00D26A]"
+                />
+              </div>
+            </div>
+
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between mb-1.5">
                 <label
@@ -214,14 +259,19 @@ const ResumeTailor = () => {
                   Paste Full Job Description Text
                 </label>
                 <span className="text-[11px] text-slate-400">
-                  {jobDescription.length} characters
+                  {jobData.description.length} characters
                 </span>
               </div>
               <textarea
                 id="job-description"
                 rows={12}
-                value={jobDescription}
-                onChange={(e) => setJobDescription(e.target.value)}
+                value={jobData.description}
+                onChange={(e) =>
+                  setJobData((prev) => ({
+                    ...prev,
+                    description: e.target.value,
+                  }))
+                }
                 placeholder="Paste the target job post here (responsibilities, qualifications, tech stack)..."
                 className="w-full flex-1 min-h-[280px] text-xs p-3 font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00D26A] focus:border-[#00D26A] leading-relaxed resize-none"
               />
@@ -258,7 +308,7 @@ const ResumeTailor = () => {
                 <ArrowRight className="w-5 h-5 text-[#00D26A]" />
               </>
             )}
- </button>
+          </button>
         </div>
       </form>
     </div>
