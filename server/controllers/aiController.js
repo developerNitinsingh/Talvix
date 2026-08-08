@@ -244,7 +244,7 @@ export const extractAndUpdateResume = async (req, res) => {
     Your task is to tailor the candidate's existing resume to perfectly match the provided Job Description.
     RESUME CONTENT:
     Extract data from this resume: ${resumeText} 
-    JOB DESCRIPTION: ${jobDescription}
+    JOB DESCRIPTION: ${jobDescription.description}
 
       INSTRUCTIONS:
       1. Re-write the Summary statement to highlight alignment with the job requirements using key phrases from the JD.
