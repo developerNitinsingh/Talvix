@@ -1269,7 +1269,7 @@ export default function App() {
         <PricingSection />
         <CtaBanner />
         <Footer />
-        <DemoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <DemoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(true)} />
       </div>
     </div>
   );

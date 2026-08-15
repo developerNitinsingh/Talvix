@@ -3,134 +3,100 @@ import { Zap } from "lucide-react";
 import Title from "./Title";
 
 const Features = () => {
-  const [isHover, setIsHover] = React.useState(false);
-
   return (
-    <div
-      id="features"
-      className="flex flex-col items-center my-10 scroll-mt-12 "
-    >
-      <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10  rounded-full px-6 py-1.5">
-        <Zap width={14} />
-        <span>Simple Process</span>
-      </div>
-      <Title
-        title={"Build your resume"}
-        description={
-          "Our streamlined process helps you create a professional resume in miniutes with intelligent AI-powered tools and features."
-        }
-      />
+    <section id="features" className="py-24 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold tracking-wider uppercase">
+            <i className="fa-solid fa-sparkles"></i> Simple & Powerful Process
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+            Build your job-winning resume with intelligent precision
+          </h2>
+          <p className="text-gray-400 text-base sm:text-lg">
+            Our streamlined AI engine analyzes employer job descriptions and
+            generates optimized resumes formatted to beat Applicant Tracking
+            Systems (ATS).
+          </p>
+        </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center xl:-mt-10">
-        <img
-          className="max-w-2xl w-full xl:-ml-32"
-          src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/features/group-image-1.png"
-          alt=""
-        />
-        <div
-          className="px-4 md:px-0"
-          onMouseEnter={() => setIsHover(true)}
-          onMouseLeave={() => setIsHover(false)}
-        >
-          <div
-            className={
-              "flex items-center justify-center gap-6 max-w-md group cursor-pointer"
-            }
-          >
-            <div
-              className={`p-6 group-hover:bg-violet-100 border border-transparent group-hover:border-violet-300  flex gap-4 rounded-xl transition-colors ${!isHover ? "border-violet-300 bg-violet-100" : ""}`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="size-6 stroke-violet-600"
-              >
-                <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" />
-                <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />
-              </svg>
-              <div className="space-y-2">
-                <h3 className="text-base font-semibold text-slate-700">
-                  Real-Time Analytics
-                </h3>
-                <p className="text-sm text-slate-600 max-w-xs">
-                  Get instant insights into your finances with live dashboards.
-                </p>
-              </div>
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Feature 1 */}
+          <div className="glass-card p-8 rounded-3xl relative group overflow-hidden border border-white/5 hover:border-emerald-500/30">
+            <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-[#07090e] transition-all duration-300">
+              <i className="fa-solid fa-microchip"></i>
             </div>
+            <h3 className="text-xl font-bold text-white mb-3">
+              Real-Time ATS Analytics
+            </h3>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              Get instant score feedback matching your resume against recruiter
+              search algorithms before hitting apply.
+            </p>
+            <ul className="space-y-2 text-xs text-gray-300">
+              <li className="flex items-center gap-2">
+                <i className="fa-solid fa-check-circle text-emerald-400"></i>{" "}
+                Instant Keyword Parsing
+              </li>
+              <li className="flex items-center gap-2">
+                <i className="fa-solid fa-check-circle text-emerald-400"></i>{" "}
+                Format & Typography Check
+              </li>
+            </ul>
           </div>
-          <div className="flex items-center justify-center gap-6 max-w-md group cursor-pointer">
-            <div className="p-6 group-hover:bg-green-100 border border-transparent group-hover:border-green-300 flex gap-4 rounded-xl transition-colors">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="size-6 stroke-green-600"
-              >
-                <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
-              </svg>
-              <div className="space-y-2">
-                <h3 className="text-base font-semibold text-slate-700">
-                  Bank-Grade Security
-                </h3>
-                <p className="text-sm text-slate-600 max-w-xs">
-                  End-to-end encryption, 2FA, compliance with GDPR standards.
-                </p>
-              </div>
+
+          {/* Feature 2 */}
+          <div className="glass-card p-8 rounded-3xl relative group overflow-hidden border border-white/5 hover:border-emerald-500/30">
+            <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-[#07090e] transition-all duration-300">
+              <i className="fa-solid fa-shield-halved"></i>
             </div>
+            <h3 className="text-xl font-bold text-white mb-3">
+              Bank-Grade Privacy
+            </h3>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              End-to-end encryption guarantees your career history, personal
+              contact info, and metrics remain 100% private.
+            </p>
+            <ul className="space-y-2 text-xs text-gray-300">
+              <li className="flex items-center gap-2">
+                <i className="fa-solid fa-check-circle text-emerald-400"></i>
+                SOC-2 Compliant Architecture
+              </li>
+              <li className="flex items-center gap-2">
+                <i className="fa-solid fa-check-circle text-emerald-400"></i>
+                Zero Data Selling
+              </li>
+            </ul>
           </div>
-          <div className="flex items-center justify-center gap-6 max-w-md group cursor-pointer">
-            <div className="p-6 group-hover:bg-orange-100 border border-transparent group-hover:border-orange-300 flex gap-4 rounded-xl transition-colors">
-              <svg
-                className="size-6 stroke-orange-600"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 15V3" />
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <path d="m7 10 5 5 5-5" />
-              </svg>
-              <div className="space-y-2">
-                <h3 className="text-base font-semibold text-slate-700">
-                  Customizable Reports
-                </h3>
-                <p className="text-sm text-slate-600 max-w-xs">
-                  Export professional, audit-ready financial reports for tax or
-                  internal review.
-                </p>
-              </div>
+
+          {/* Feature 3 */}
+          <div className="glass-card p-8 rounded-3xl relative group overflow-hidden border border-white/5 hover:border-emerald-500/30">
+            <div className="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-[#07090e] transition-all duration-300">
+              <i className="fa-solid fa-file-export"></i>
             </div>
+            <h3 className="text-xl font-bold text-white mb-3">
+              Customizable Exports
+            </h3>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              Export pixel-perfect PDF, Word, or shareable web-ready links with
+              custom portfolio integrations in one click.
+            </p>
+            <ul className="space-y-2 text-xs text-gray-300">
+              <li className="flex items-center gap-2">
+                <i className="fa-solid fa-check-circle text-emerald-400"></i>{" "}
+                Clean Vector PDFs
+              </li>
+              <li className="flex items-center gap-2">
+                <i className="fa-solid fa-check-circle text-emerald-400"></i>{" "}
+                Multi-column Layout Support
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <style>{`
-                @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-            
-                * {
-                    font-family: 'Poppins', sans-serif;
-                }
-            `}</style>
-    </div>
+    </section>
   );
 };
 

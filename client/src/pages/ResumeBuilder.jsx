@@ -155,7 +155,7 @@ const ResumeBuilder = () => {
       <div className="max-w-7xl mx-auto px-4 py-6">
         <Link
           to={"/app"}
-          className="inline-flex gap-2 items-center text-slate-500 hover:text-slate-700 transition-all"
+          className="inline-flex gap-2 items-center text-gray-400 hover:text-gray-200 transition-all"
         >
           <ArrowLeftIcon className="size-4" /> Back to Dashboard
         </Link>
@@ -166,12 +166,12 @@ const ResumeBuilder = () => {
           {/* Left pannel - form */}
 
           <div className="relative lg:col-span-5 rounded-lg overflow-hidden">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1">
+            <div className="bg-slate-800/50 backdrop-blur rounded-lg shadow-sm border border-emerald-500/30 p-6 pt-1">
               {/* Progress bar using activeSectionIndex */}
 
-              <hr className="absolute top-0 left-0 right-0 border border-gray-200" />
+              <hr className="absolute top-0 left-0 right-0 border border-emerald-500/20" />
               <hr
-                className="absolute top-0 left-0 h-1 bg-gradient-to-r from-green-500 to-green-600 border-none transition-all duration-2000"
+                className="absolute top-0 left-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-600 border-none transition-all duration-2000"
                 style={{
                   width: `${(activeSectionIndex * 100) / (sections.length - 1)}%`,
                 }}
@@ -180,7 +180,7 @@ const ResumeBuilder = () => {
               {/* Section Navigation */}
 
               <div
-                className="flex justify-between items-center mb-6 border-b border-gray-300
+                className="flex justify-between items-center mb-6 border-b border-emerald-500/20
                py-1"
               >
                 <div className="flex  items-center gap-2">
@@ -212,7 +212,7 @@ const ResumeBuilder = () => {
                         )
                       }
                       disabled={activeSectionIndex === 0}
-                      className="flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all"
+                      className="flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-slate-700/50 hover:text-emerald-400 transition-all"
                     >
                       <ChevronLeft className="size-4" /> Previous
                     </button>
@@ -225,7 +225,7 @@ const ResumeBuilder = () => {
                       )
                     }
                     disabled={activeSectionIndex === sections.length - 1}
-                    className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all ${activeSectionIndex === sections.length - 1 && "opacity-50"}`}
+                    className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-slate-700/50 hover:text-emerald-400 transition-all ${activeSectionIndex === sections.length - 1 && "opacity-50"}`}
                   >
                     Next <ChevronRight className="size-4" />
                   </button>
@@ -313,7 +313,7 @@ const ResumeBuilder = () => {
                 onClick={() => {
                   toast.promise(saveResume, { loading: "Saving..." });
                 }}
-                className="bg-gradient-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm"
+                className="bg-gradient-to-br from-emerald-600 to-emerald-700 ring-emerald-400 text-white ring hover:ring-emerald-300 transition-all rounded-md px-6 py-2 mt-6 text-sm"
               >
                 Save Changes
               </button>
@@ -328,7 +328,7 @@ const ResumeBuilder = () => {
                 {resumeData.public && (
                   <button
                     onClick={handleShare}
-                    className="flex items-center p-2 px-4 gap-2 text-xs bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 rounded-lg ring-blue-300 hover:ring transition-colors"
+                    className="flex items-center p-2 px-4 gap-2 text-xs bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-lg ring-blue-500 hover:ring transition-colors"
                   >
                     <Share2Icon className="size-4" /> Share
                   </button>
@@ -336,7 +336,7 @@ const ResumeBuilder = () => {
 
                 <button
                   onClick={changeResumeVisibility}
-                  className="flex items-center p-2 px-4 gap-2 text-xs bg-gradient-to-br from-purple-100 to-purple-200 text-purple-600 ring-purple-300 rounded-lg hover:ring transition-colors "
+                  className="flex items-center p-2 px-4 gap-2 text-xs bg-gradient-to-br from-purple-600 to-purple-700 text-white ring-purple-500 rounded-lg hover:ring transition-colors "
                 >
                   {resumeData.public ? (
                     <EyeIcon className="size-4" />
@@ -349,7 +349,7 @@ const ResumeBuilder = () => {
 
                 <button
                   onClick={downloadResume}
-                  className="flex items-center gap-2 px-6 py-2 text-xs bg-gradient-to-br from-gray-100 to-green-200 text-green-600 rounded-lg ring-green-300 hover:ring transition-colors"
+                  className="flex items-center gap-2 px-6 py-2 text-xs bg-gradient-to-br from-emerald-600 to-emerald-700 text-white rounded-lg ring-emerald-500 hover:ring transition-colors"
                 >
                   <DownloadIcon className="size-4" />
                   Download

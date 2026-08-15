@@ -12,6 +12,7 @@ import { login, setLoading } from "./app/features/authSlice";
 import { Toaster } from "react-hot-toast";
 import ResumeTailor from "./pages/ResumeTailor";
 import News from "./pages/talvix_ai_workforce_resume_platform";
+import { CustomStyles } from "./components/CustomStyles";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,13 +45,21 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <div className="">
+      <CustomStyles />
       <Toaster />
+
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] radial-aurora opacity-70"></div>
+        <div className="absolute -top-32 right-10 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div className="absolute top-[40%] -left-32 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[140px]"></div>
+        <div className="absolute inset-0 bg-grid-pattern opacity-60"></div>
+      </div>
+
       {/* <News /> */}
       <Routes>
         <Route path="/" element={<Home />} />
-
-        <Route path="/app" element={<Layout />}>
+        <Route path="app" element={<Layout />}>
           <Route path="" element={<Dashboard />} />
           <Route path="builder/:resumeId" element={<ResumeBuilder />} />
           <Route path="tailor-resume" element={<ResumeTailor />} />
@@ -58,7 +67,7 @@ const App = () => {
 
         <Route path="view/:resumeId" element={<Preview />} />
       </Routes>
-    </>
+    </div>
   );
 };
 

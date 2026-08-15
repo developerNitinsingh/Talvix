@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Banner from "../components/home/Banner";
 import Hero from "../components/home/Hero";
 import Features from "../components/home/Features";
@@ -7,6 +7,7 @@ import CallToAction from "../components/home/CallToAction";
 import Footer from "../components/home/Footer";
 
 const Home = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div>
       <Banner />
@@ -15,7 +16,6 @@ const Home = () => {
       <Testimonial />
       <CallToAction />
       <Footer />
-      
     </div>
   );
 };

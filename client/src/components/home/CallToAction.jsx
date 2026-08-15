@@ -2,37 +2,33 @@ import React from "react";
 
 const CallToAction = () => {
   return (
-    <div
-      id="cta"
-      className="border-y border-dashed border-slate-200 w-full max-w-5xl mx-auto px-10 sm:px-16 mt-28"
-    >
-      <div className="flex flex-col md:flex-row text-center md:text-left items-center justify-between gap-8 px-3 md:px-10 border-x border-dashed border-slate-200 py-16 sm:py-20 -mt-10 -mb-10 w-full">
-        <p className="text-xl font-medium max-w-md text-slate-800">
-          Build a Professional Resume That Helps You Stand Out and Get Hired
-        </p>
-        <a
-          href="https://prebuiltui.com"
-          className="flex items-center gap-2 rounded py-3 px-8 bg-green-600 hover:bg-green-700 transition text-white"
-        >
-          <span>Get Started</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="size-4.5"
-          >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
-        </a>
+    <section className="py-20 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="glass-panel rounded-3xl p-10 sm:p-16 border border-emerald-500/30 text-center relative overflow-hidden shadow-2xl">
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-500/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-6 relative z-10 leading-tight">
+            Build a Professional Resume That Helps You{" "}
+            <br className="hidden sm:inline" />
+            Stand Out and Get Hired.
+          </h2>
+          <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-8 relative z-10">
+            Join over 25,000 job seekers who accelerated their careers using
+            TALVIX AI engine.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
+            <a
+              href="/app?state=login"
+              className="glow-button bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-[#07090e] font-extrabold px-8 py-4 rounded-xl text-base transition-all flex items-center gap-3"
+            >
+              <span>Get Started Now</span>
+              <i className="fa-solid fa-arrow-right text-sm"></i>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

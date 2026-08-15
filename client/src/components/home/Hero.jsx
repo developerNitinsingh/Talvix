@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Logo from "../Logo";
+import { InteractiveSphere3D } from "../interactiveSphere3D";
 
 const Hero = () => {
   const { user } = useSelector((state) => state.auth);
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const companiesLogo = [
     {
@@ -113,71 +114,122 @@ const Hero = () => {
 
   return (
     <>
-      <div className="min-h-screen pb-20">
-        {/* Navbar */}
-        <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
-          <a href="https://prebuiltui.com">
-            <Logo />
+      <div className=" pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 max-[500px]:gap-1">
+          {/* Brand Logo */}
+          <a
+            href="#"
+            className="flex items-center gap-3 max-[500px]:gap-2 group min-w-0"
+          >
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-emerald-400 p-[1px] shadow-lg shadow-emerald-500/20">
+              <div className="w-full h-full bg-[#07090e] rounded-[11px] flex items-center justify-center group-hover:bg-transparent transition-all duration-300">
+                <i className="fa-solid fa-bolt text-emerald-400 group-hover:text-white transition-colors"></i>
+              </div>
+            </div>
+            <div className="flex flex-col min-w-0">
+              <span className="text-2xl max-[500px]:text-xl font-extrabold tracking-wider text-white font-sans flex items-center gap-1">
+                TALVIX
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              </span>
+              <span className="text-[9px] text-gray-400 tracking-widest uppercase font-semibold truncate">
+                Career Intelligence
+              </span>
+            </div>
           </a>
 
-          <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
-            <a href="#" className="hover:text-green-600 transition">
-              Home
-            </a>
-            <a href="#features" className="hover:text-green-600 transition">
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+            <a
+              href="#features"
+              className="hover:text-emerald-400 transition-colors py-1"
+            >
               Features
             </a>
-            <a href="#testimonials" className="hover:text-green-600 transition">
-              Testimonials
+            <a
+              href="#testimonials"
+              className="hover:text-emerald-400 transition-colors py-1"
+            >
+              Success Stories
             </a>
-            <a href="#cta" className="hover:text-green-600 transition">
-              Contact
+            <a
+              href="#pricing"
+              className="hover:text-emerald-400 transition-colors py-1"
+            >
+              Pricing
             </a>
-          </div>
+          </nav>
 
-          <div className="flex gap-2">
+          {/* Action Buttons */}
+          <div className="flex items-center gap-4 max-[500px]:gap-2">
             <Link
               to={"/app?state=register"}
-              className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white"
               hidden={user}
+              className="glow-button bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-[#07090e] font-bold px-5 py-2.5 max-[500px]:px-3 max-[500px]:py-2 rounded-xl text-sm max-[500px]:text-xs transition-all duration-300 flex items-center gap-2"
             >
-              Get started
+              <span>Get Started</span>
+              <i className="fa-solid fa-chevron-right text-xs"></i>
             </Link>
-
             <Link
-              to="/app?state=login"
-              className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900"
               hidden={user}
+              to="/app?state=login"
+              className="hidden sm:inline-flex text-sm font-medium text-gray-300 hover:text-white transition-colors"
             >
-              Login
+              Log In
             </Link>
-
             <Link
               to={"/app"}
-              className="hidden md:block px-8 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white"
               hidden={!user}
+              className="glow-button bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-[#07090e] font-bold px-5 py-2.5 max-[500px]:px-3 max-[500px]:py-2 rounded-xl text-sm max-[500px]:text-xs transition-all duration-300 flex items-center gap-2"
             >
               Dashboard
             </Link>
-          </div>
 
-          <button
-            onClick={() => setMenuOpen(true)}
-            className="md:hidden active:scale-90 transition"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="26"
-              height="26"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="lucide lucide-menu"
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden text-gray-400 hover:text-white text-xl p-2 max-[500px]:p-1.5 focus:outline-none"
             >
-              <path d="M4 5h16M4 12h16M4 19h16" />
-            </svg>
-          </button>
-        </nav>
+              <i
+                className={`fa-solid ${mobileMenuOpen ? "fa-xmark" : "fa-bars"}`}
+              ></i>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-b border-white/10 bg-[#0f141c]/95 backdrop-blur-2xl px-6 py-6 space-y-4">
+            <a
+              href="#features"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-gray-300 hover:text-emerald-400 text-base font-medium"
+            >
+              Features
+            </a>
+            <a
+              href="#testimonials"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-gray-300 hover:text-emerald-400 text-base font-medium"
+            >
+              Success Stories
+            </a>
+            <a
+              href="#pricing"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-gray-300 hover:text-emerald-400 text-base font-medium"
+            >
+              Pricing
+            </a>
+            <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
+              <a
+                href="#pricing"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center bg-emerald-500 text-[#07090e] font-bold py-3 rounded-xl"
+              >
+                Get Started Free
+              </a>
+            </div>
+          </div>
+        )}
 
         {/* Mobile Menu */}
         <div
@@ -204,150 +256,180 @@ const Hero = () => {
         </div>
 
         {/* Hero Section */}
-        <div className="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-40 text-black">
-          <div className="absolute top-28 xl:top-10 -z-10 left-1/4 size-72 sm:size-96 xl:size-120 2xl:size-132 bg-green-300 blur-[100px] opacity-30"></div>
+        <div className="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-40 text-black"></div>
+      </div>
 
-          {/* Avatars + Stars */}
-          <div className="flex items-center mt-24">
-            <div className="flex -space-x-3 pr-3">
-              <img
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200"
-                alt="user3"
-                className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-[1]"
-              />
-              <img
-                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200"
-                alt="user1"
-                className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-2"
-              />
-              <img
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200"
-                alt="user2"
-                className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-[3]"
-              />
-              <img
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200"
-                alt="user3"
-                className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-[4]"
-              />
-              <img
-                src="https://randomuser.me/api/portraits/men/75.jpg"
-                alt="user5"
-                className="size-8 rounded-full border-2 border-white hover:-translate-y-0.5 transition z-[5]"
-              />
-            </div>
-
-            <div>
-              <div className="flex ">
-                {Array(5)
-                  .fill(0)
-                  .map((_, i) => (
-                    <svg
-                      key={i}
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-star text-transparent fill-green-600"
-                      aria-hidden="true"
-                    >
-                      <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
-                    </svg>
-                  ))}
+      <section className="relative pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* Hero Left Text & CTAs */}
+            <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
+              {/* Rating Pill */}
+              <div className="inline-flex items-center gap-3 glass-card px-4 py-2 rounded-full border border-white/10 shadow-inner">
+                <div className="flex -space-x-2">
+                  <img
+                    className="w-7 h-7 rounded-full border-2 border-[#07090e] object-cover"
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                    alt="User Avatar"
+                  />
+                  <img
+                    className="w-7 h-7 rounded-full border-2 border-[#07090e] object-cover"
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+                    alt="User Avatar"
+                  />
+                  <img
+                    className="w-7 h-7 rounded-full border-2 border-[#07090e] object-cover"
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
+                    alt="User Avatar"
+                  />
+                </div>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-300">
+                  <div className="flex text-amber-400 text-xs">
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                  </div>
+                  <span className="text-white font-bold">4.9/5</span>
+                  <span className="text-gray-400 hidden sm:inline">
+                    • Trusted by 25,000+ professionals
+                  </span>
+                </div>
               </div>
-              <p className="text-sm text-gray-700">Used by 10,000+ users</p>
-            </div>
-          </div>
 
-          {/* Headline + CTA */}
-          <h1 className="text-5xl md:text-6xl font-semibold max-w-5xl text-center mt-4 md:leading-[70px]">
-            Land your dream job with{" "}
-            <span className=" bg-gradient-to-r from-green-700 to-green-600 bg-clip-text text-transparent text-nowrap">
-              AI-powered{" "}
-            </span>{" "}
-            resumes.
-          </h1>
+              {/* Title */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+                Land your dream job with{" "}
+                <span className="gradient-text">AI-powered</span> career
+                intelligence.
+              </h1>
 
-          <p className="max-w-md text-center text-base my-7">
-            Create, edit and download proffestional resumes with AI-powered
-            assistance.
-          </p>
+              {/* Subtitle */}
+              <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                Create, optimize, and tailor professional resumes engineered for
+                top ATS algorithms in seconds with TALVIX smart assistant.
+              </p>
 
-          {/* CTA Buttons */}
-          <div className="flex items-center gap-4 ">
-            <Link
-              to="/app"
-              className="bg-green-500 hover:bg-green-600 text-white rounded-full px-9 h-12 m-1 ring-offset-2 ring-1 ring-green-400 flex items-center transition-colors"
-            >
-              Get started
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-arrow-right ml-1 size-4"
-                aria-hidden="true"
-              >
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </Link>
-            <Link to={"/app/tailor-resume"}>
-              <button className="flex items-center gap-2 border border-slate-400 hover:bg-green-50 transition rounded-full px-7 h-12 text-slate-700">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-video size-5"
-                  aria-hidden="true"
+              {/* Action CTAs */}
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
+                <a
+                  href="#pricing"
+                  className="glow-button w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-[#07090e] font-extrabold px-8 py-4 rounded-xl text-base transition-all duration-300 flex items-center justify-center gap-3"
                 >
-                  <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path>
-                  <rect x="2" y="6" width="14" height="12" rx="2"></rect>
-                </svg>
-                <span>Try demo</span>
-              </button>
-            </Link>
-          </div>
+                  <span>Get Started Free</span>
+                  <i className="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+                <a href="app/tailor-resume" className="w-full sm:w-auto">
+                  <button className="glass-card w-full sm:w-auto text-white font-semibold px-7 py-4 rounded-xl text-base hover:bg-white/10 transition-all flex items-center justify-center gap-3 group">
+                    <div className="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <i className="fa-solid fa-play text-xs pl-0.5"></i>
+                    </div>
+                    <span>Optimize</span>
+                  </button>
+                </a>
+              </div>
 
-          <p className="py-6 text-slate-600 mt-14">
-            Trusting by leading brands, including
-          </p>
+              {/* Micro Details */}
+              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-gray-400">
+                <span className="flex items-center gap-2">
+                  <i className="fa-solid fa-check text-emerald-400"></i> No
+                  Credit Card Required
+                </span>
+                <span className="flex items-center gap-2">
+                  <i className="fa-solid fa-check text-emerald-400"></i> Instant
+                  ATS Score
+                </span>
+                <span className="flex items-center gap-2">
+                  <i className="fa-solid fa-check text-emerald-400"></i> 100%
+                  Secure & Private
+                </span>
+              </div>
+            </div>
 
-          <div
-            className="flex flex-wrap justify-between max-sm:justify-center gap-6 max-w-3xl w-full mx-auto py-4"
-            id="logo-container"
-          >
-            {companiesLogo.map((company, index) => (
-              <React.Fragment key={index}>{company.logo}</React.Fragment>
-            ))}
+            {/* Hero Right 3D Interactive Mesh Box */}
+            <div className="lg:col-span-6 relative flex justify-center items-center">
+              <div className="absolute w-72 h-72 sm:w-96 sm:h-96 bg-emerald-500/20 rounded-full blur-[90px] -z-10 animate-pulse-slow"></div>
+
+              <div className="relative w-full aspect-square max-w-[500px] rounded-3xl glass-panel p-2 overflow-hidden border border-emerald-500/20 shadow-2xl">
+                {/* 3D Canvas Box */}
+                <InteractiveSphere3D />
+
+                {/* Floating Metric Badge 1 */}
+                <div className="absolute top-8 right-6 glass-card p-3.5 rounded-2xl max-w-[190px] border border-emerald-500/30 shadow-xl animate-float pointer-events-none">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                      <i className="fa-solid fa-chart-line text-sm"></i>
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">
+                        ATS Score
+                      </div>
+                      <div className="text-lg font-extrabold text-white">
+                        98.4% Match
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Metric Badge 2 */}
+                <div
+                  className="absolute bottom-8 left-6 glass-card p-3.5 rounded-2xl max-w-[210px] border border-blue-500/30 shadow-xl animate-float pointer-events-none"
+                  style={{ animationDelay: "-3s" }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400">
+                      <i className="fa-solid fa-wand-magic-sparkles text-sm"></i>
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">
+                        AI Enhancement
+                      </div>
+                      <div className="text-xs font-semibold text-white">
+                        Keyword Tailored for Tech Lead
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <style>
-        {`
-                    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      </section>
 
-                    * {
-                        font-family: 'Poppins', sans-serif;
-                    }
-                `}
-      </style>
+      {/* ======== */}
+      <section className="border-y border-white/5 bg-[#0f141c]/40 py-10 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-gray-500 mb-8">
+            Trusted by job seekers hired at industry leaders including
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+            <div className="flex items-center gap-2 font-bold text-gray-300 text-lg hover:text-white">
+              <i className="fa-brands fa-microsoft text-2xl text-blue-400"></i>{" "}
+              Microsoft
+            </div>
+            <div className="flex items-center gap-2 font-bold text-gray-300 text-lg hover:text-white">
+              <i className="fa-brands fa-google text-2xl text-red-400"></i>{" "}
+              Google
+            </div>
+            <div className="flex items-center gap-2 font-bold text-gray-300 text-lg hover:text-white">
+              <i className="fa-brands fa-amazon text-2xl text-amber-400"></i>{" "}
+              Amazon
+            </div>
+            <div className="flex items-center gap-2 font-bold text-gray-300 text-lg hover:text-white">
+              <i className="fa-brands fa-spotify text-2xl text-emerald-400"></i>{" "}
+              Spotify
+            </div>
+            <div className="flex items-center gap-2 font-bold text-gray-300 text-lg hover:text-white">
+              <i className="fa-brands fa-meta text-2xl text-blue-500"></i> Meta
+            </div>
+            <div className="flex items-center gap-2 font-bold text-gray-300 text-lg hover:text-white">
+              <i className="fa-brands fa-apple text-2xl text-gray-200"></i>{" "}
+              Apple
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
