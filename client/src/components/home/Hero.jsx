@@ -313,21 +313,21 @@ const Hero = () => {
 
               {/* Action CTAs */}
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
-                <a
-                  href="/app"
+                <Link
+                  to="/app"
                   className="glow-button w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-[#07090e] font-extrabold px-8 py-4 rounded-xl text-base transition-all duration-300 flex items-center justify-center gap-3"
                 >
                   <span>Get Started Free</span>
                   <i className="fa-solid fa-arrow-right text-sm"></i>
-                </a>
-                <a href="/app/tailor-resume" className="w-full sm:w-auto">
-                  <button className="glass-card w-full sm:w-auto text-white font-semibold px-7 py-4 rounded-xl text-base hover:bg-white/10 transition-all flex items-center justify-center gap-3 group">
+                </Link>
+                <Link to="/app/tailor-resume" className="w-full sm:w-auto">
+                  <span className="glass-card w-full sm:w-auto text-white font-semibold px-7 py-4 rounded-xl text-base hover:bg-white/10 transition-all flex items-center justify-center gap-3 group">
                     <div className="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                       <i className="fa-solid fa-play text-xs pl-0.5"></i>
                     </div>
                     <span>Optimize</span>
-                  </button>
-                </a>
+                  </span>
+                </Link>
               </div>
 
               {/* Micro Details */}
