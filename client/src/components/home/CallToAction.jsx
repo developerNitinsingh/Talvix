@@ -19,7 +19,7 @@ const CallToAction = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
             <a
-              href="/app?state=login"
+              href="/app"
               className="glow-button bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-[#07090e] font-extrabold px-8 py-4 rounded-xl text-base transition-all flex items-center gap-3"
             >
               <span>Get Started Now</span>

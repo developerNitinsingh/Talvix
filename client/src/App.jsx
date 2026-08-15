@@ -59,6 +59,7 @@ const App = () => {
       {/* <News /> */}
       <Routes>
         <Route path="/" element={<Home />} />
+
         <Route path="app" element={<Layout />}>
           <Route path="" element={<Dashboard />} />
           <Route path="builder/:resumeId" element={<ResumeBuilder />} />
