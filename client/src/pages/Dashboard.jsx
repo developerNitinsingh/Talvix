@@ -133,7 +133,7 @@ const Dashboard = () => {
     <div>
       <div className="max-w-7xl mx-auto px-4 py-8">
         <p className="text-2xl font-medium mb-6 bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent sm:hidden">
-          Welcome, Joe Doe
+          Welcome, {user?.name}
         </p>
 
         <div className="flex gap-4 ">
