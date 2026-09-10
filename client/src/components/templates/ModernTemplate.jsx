@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Globe } from "lucide-react";
+import { normalizeSkills } from "../../utils/skills";
 
 const ModernTemplate = ({ data, accentColor }) => {
   const formatDate = (dateStr) => {
@@ -185,13 +186,13 @@ const ModernTemplate = ({ data, accentColor }) => {
               </h2>
 
               <div className="flex flex-wrap gap-2">
-                {data.skills.map((skill, index) => (
+                {normalizeSkills(data.skills).map((skill, index) => (
                   <span
                     key={index}
                     className="px-3 py-1 text-sm text-white rounded-full"
                     style={{ backgroundColor: accentColor }}
                   >
-                    {skill}
+                    {skill.skill}
                   </span>
                 ))}
               </div>

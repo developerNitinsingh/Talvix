@@ -40,6 +40,16 @@ const Navbar = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-4">
+          {user?.role === "admin" && (
+            <Link
+              to="/admin"
+              className="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/20 transition-all flex items-center gap-1.5 shadow-lg shadow-emerald-500/10"
+            >
+              <i className="fa-solid fa-shield-halved text-emerald-400"></i>
+              <span>Admin Panel</span>
+            </Link>
+          )}
+
           <p className="hidden sm:inline-flex text-sm font-medium text-gray-300 hover:text-white transition-colors">
             Hi, {user?.name}
           </p>

@@ -1,5 +1,4 @@
-import { GraduationCap, Plus, Trash2 } from "lucide-react";
-import React from "react";
+import { Plus, Trash2 } from "lucide-react";
 
 const ProjectForm = ({ data, onChange }) => {
   const addProject = () => {
@@ -70,6 +69,24 @@ const ProjectForm = ({ data, onChange }) => {
                 onChange={(e) => updateProject(index, "type", e.target.value)}
                 type="text"
                 placeholder="Project Type"
+                className="px-3 py-2 text-sm rounded-lg"
+              />
+              <input
+                value={project.projectLiveLink || ""}
+                onChange={(e) =>
+                  updateProject(index, "projectLiveLink", e.target.value)
+                }
+                type="url"
+                placeholder="Live Project URL (optional)"
+                className="px-3 py-2 text-sm rounded-lg"
+              />
+              <input
+                value={project.projectSourceCodeLink || ""}
+                onChange={(e) =>
+                  updateProject(index, "projectSourceCodeLink", e.target.value)
+                }
+                type="url"
+                placeholder="Source Code URL (optional)"
                 className="px-3 py-2 text-sm rounded-lg"
               />
               <textarea

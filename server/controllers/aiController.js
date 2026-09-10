@@ -110,10 +110,10 @@ export const uploadResume = async (req, res) => {
     },
     skills: [
       {
-        type: String,
+        category: { type: String },
+        skill: { type: String },
       },
     ],
-
     personal_info: {
       image: {
         type: String,
@@ -165,6 +165,9 @@ export const uploadResume = async (req, res) => {
         name: { type: String },
         type: { type: String },
         description: { type: String },
+        description_in_points: [{ type: String }],
+        projectLiveLink: { type: String },
+        projectSourceCodeLink: { type: String },
       },
     ],
     education: [
@@ -174,6 +177,9 @@ export const uploadResume = async (req, res) => {
         field: { type: String },
         graduation_date: { type: String },
         gpa: { type: String },
+        location: { type: String },
+        details: [{ type: String }],
+        period: { type: String },
       },
     ],
     }
@@ -267,10 +273,10 @@ Details:${jobDescription.description}
     },
     skills: [
       {
-        type: String,
+        category: { type: String },
+        skill: { type: String },
       },
     ],
-
     personal_info: {
       image: {
         type: String,
@@ -322,6 +328,9 @@ Details:${jobDescription.description}
         name: { type: String },
         type: { type: String },
         description: { type: String },
+        description_in_points: [{ type: String }],
+        projectLiveLink: { type: String },
+        projectSourceCodeLink: { type: String },
       },
     ],
     education: [
@@ -331,6 +340,9 @@ Details:${jobDescription.description}
         field: { type: String },
         graduation_date: { type: String },
         gpa: { type: String },
+        location: { type: String },
+        details: [{ type: String }],
+        period: { type: String },
       },
     ],
     }

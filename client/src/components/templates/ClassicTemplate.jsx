@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Globe } from "lucide-react";
+import { normalizeSkills } from "../../utils/skills";
 
 const ClassicTemplate = ({ data, accentColor }) => {
   const formatDate = (dateStr) => {
@@ -180,9 +181,9 @@ const ClassicTemplate = ({ data, accentColor }) => {
           </h2>
 
           <div className="flex gap-4 flex-wrap">
-            {data.skills.map((skill, index) => (
+            {normalizeSkills(data.skills).map((skill, index) => (
               <div key={index} className="text-gray-700">
-                • {skill}
+                • {skill.skill}
               </div>
             ))}
           </div>

@@ -1,8 +1,14 @@
 import { Plus, Sparkles, X } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const SkillsForm = ({ data, onChange }) => {
   const [newSkill, setNewSkill] = useState("");
+
+  const getSkillLabel = (skill) => {
+    if (typeof skill === "string") return skill;
+    if (Array.isArray(skill?.skills)) return skill.skills.join(", ");
+    return skill?.skills || skill?.skill || "";
+  };
 
   const addSkill = () => {
     if (newSkill.trim() && !data.includes(newSkill.trim())) {
@@ -60,7 +66,7 @@ const SkillsForm = ({ data, onChange }) => {
               key={index}
               className="flex items-center gap-1 px-3 py-1 bg-blue-100 rounded-full text-sm"
             >
-              {skill}
+              {getSkillLabel(skill)}
               <button
                 onClick={() => removeSkill(index)}
                 className="ml-1 hover:bg-blue-200 rounded-full p-0.5 transition-colors"

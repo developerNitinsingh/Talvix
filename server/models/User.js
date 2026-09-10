@@ -2,26 +2,31 @@ import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 
 const UserSchema = new Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        password: {
-            type: String,
-            required: true,
-        },
+  {
+    name: {
+      type: String,
+      required: true,
     },
-    { timestamps: true },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
+  },
+  { timestamps: true },
 );
 
 UserSchema.methods.comparePassword = async function (password) {
-    return bcrypt.compareSync(password, this.password);
+  return bcrypt.compareSync(password, this.password);
 };
 
 const User = mongoose.model("User", UserSchema);

@@ -13,6 +13,8 @@ import { Toaster } from "react-hot-toast";
 import ResumeTailor from "./pages/ResumeTailor";
 import News from "./pages/talvix_ai_workforce_resume_platform";
 import { CustomStyles } from "./components/CustomStyles";
+import AdminRoute from "./components/AdminRoute";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -65,6 +67,15 @@ const App = () => {
           <Route path="builder/:resumeId" element={<ResumeBuilder />} />
           <Route path="tailor-resume" element={<ResumeTailor />} />
         </Route>
+
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
 
         <Route path="view/:resumeId" element={<Preview />} />
       </Routes>

@@ -75,6 +75,16 @@ export const loginUser = async (req, res) => {
       return res.status(400).json({ message: "Invalid password" });
     }
 
+    const configuredAdminEmail = process.env.ADMIN_EMAIL?.toLowerCase();
+    if (
+      configuredAdminEmail &&
+      user.email.toLowerCase() === configuredAdminEmail &&
+      user.role !== "admin"
+    ) {
+      user.role = "admin";
+      await user.save();
+    }
+
     // return success message
 
     const token = generateToken(user._id);
@@ -103,6 +113,16 @@ export const getUserById = async (req, res) => {
       return res.status(400).json({
         message: error.message || "Error in getting user User not found",
       });
+    }
+
+    const configuredAdminEmail = process.env.ADMIN_EMAIL?.toLowerCase();
+    if (
+      configuredAdminEmail &&
+      user.email.toLowerCase() === configuredAdminEmail &&
+      user.role !== "admin"
+    ) {
+      user.role = "admin";
+      await user.save();
     }
 
     // return user

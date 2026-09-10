@@ -184,6 +184,16 @@ const Hero = () => {
               Dashboard
             </Link>
 
+            {user?.role === "admin" && (
+              <Link
+                to={"/admin"}
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/20 transition-all"
+              >
+                <i className="fa-solid fa-shield-halved text-emerald-400"></i>
+                <span>Admin</span>
+              </Link>
+            )}
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden text-gray-400 hover:text-white text-xl p-2 max-[500px]:p-1.5 focus:outline-none"
